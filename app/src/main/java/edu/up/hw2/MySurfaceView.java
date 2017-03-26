@@ -69,8 +69,7 @@ public class MySurfaceView extends SurfaceView {
 
     protected void drawSomething(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
-        canvas.drawBitmap(bmpIcon,
-                getWidth()/2, getHeight()/2, null);
+        canvas.drawBitmap(bmpIcon, getWidth()/2, getHeight()/2, null);
     }
 
 
