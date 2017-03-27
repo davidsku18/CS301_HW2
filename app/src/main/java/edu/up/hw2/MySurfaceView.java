@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.SeekBar;
 
 /**
  External Citation
@@ -18,10 +20,14 @@ import android.view.SurfaceView;
  Solution: I used example code from this Demo
  */
 
-public class MySurfaceView extends SurfaceView {
+public class MySurfaceView extends SurfaceView{
 
     private SurfaceHolder surfaceHolder;
     private Bitmap bmpIcon;
+    protected Paint myPaint; // how the spot is drawn
+    protected Paint chosenPaint;
+    private Duck myDuck = new Duck();
+
 
     public MySurfaceView(Context context) {
         super(context);
@@ -40,6 +46,12 @@ public class MySurfaceView extends SurfaceView {
         init();
     }
 
+    protected void setRandomPaint() {
+        int color = Color.rgb((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        myPaint = new Paint();
+        myPaint.setColor(color);
+    }
+
     private void init(){
         surfaceHolder = getHolder();
         bmpIcon = BitmapFactory.decodeResource(getResources(),
@@ -48,6 +60,7 @@ public class MySurfaceView extends SurfaceView {
 
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
+                createColor();
                 Canvas canvas = holder.lockCanvas(null);
                 drawSomething(canvas);
                 holder.unlockCanvasAndPost(canvas);
@@ -67,10 +80,16 @@ public class MySurfaceView extends SurfaceView {
             }});
     }
 
-    protected void drawSomething(Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
-        canvas.drawBitmap(bmpIcon, getWidth()/2, getHeight()/2, null);
+    private void createColor() {
+        int color = Color.rgb((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        chosenPaint = new Paint();
+        chosenPaint.setColor(color);
     }
 
+    protected void drawSomething(Canvas canvas) {
+        canvas.drawColor(Color.WHITE);
+        canvas.drawCircle(getWidth()/2, getHeight()/2, 300, chosenPaint);
+
+    }
 
 }

@@ -1,12 +1,15 @@
 package edu.up.hw2;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private SeekBar redSeekBar;
     private SeekBar greenSeekBar;
@@ -17,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
     private int red;
     private int green;
     private int blue;
+    
+    private boolean head;
+    private boolean torso;
+    private boolean leftLeg;
+    private boolean rightLeg;
+    private boolean leftArm;
+    private boolean rightArm;
 
     // This is the duck
     Duck duck;
@@ -112,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
 
+        }
+    }
+
+    public class onTouch implements View.OnClickListener {
+        public void onClick(View v) {
+            int xCor =
         }
     }
 }
