@@ -1,8 +1,8 @@
 package edu.up.hw2;
-
+/*
 /**
  * Created by kurtisdavidson on 3/26/17.
- */
+
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -138,3 +138,4 @@ public class MyImageView extends View {
     }
 
 }
+*/

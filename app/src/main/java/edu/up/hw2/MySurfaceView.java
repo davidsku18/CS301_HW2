@@ -62,8 +62,9 @@ public class MySurfaceView extends SurfaceView{
             public void surfaceCreated(SurfaceHolder holder) {
                 createColor();
                 Canvas canvas = holder.lockCanvas(null);
-                drawSomething(canvas);
+                draw(canvas);
                 holder.unlockCanvasAndPost(canvas);
+
             }
 
             @Override
@@ -80,16 +81,28 @@ public class MySurfaceView extends SurfaceView{
             }});
     }
 
+    public void setDuck(Duck newDuck) {
+        if (newDuck != null) {
+            this.myDuck = newDuck;
+        }
+    }
+
     private void createColor() {
-        int color = Color.rgb((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        int color = Color.rgb((int) (MainActivity.red), (int) (MainActivity.green), (int) (MainActivity.blue));
         chosenPaint = new Paint();
         chosenPaint.setColor(color);
     }
-
+/*
     protected void drawSomething(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
         canvas.drawCircle(getWidth()/2, getHeight()/2, 300, chosenPaint);
 
+    }
+*/
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        this.myDuck.draw(canvas);
     }
 
 }

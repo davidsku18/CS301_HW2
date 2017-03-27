@@ -17,10 +17,13 @@ public class MainActivity extends AppCompatActivity{
     private TextView redVal;
     private TextView greenVal;
     private TextView blueVal;
-    private int red;
-    private int green;
-    private int blue;
-    
+    private SurfaceView theSurfaceView;
+    public static int red;
+    public static int green;
+    public static int blue;
+
+    MySurfaceView msv;
+
     private boolean head;
     private boolean torso;
     private boolean leftLeg;
@@ -35,10 +38,15 @@ public class MainActivity extends AppCompatActivity{
     protected final int MIN = 0;
     protected final int STEP = 1;
 
+    private int defTargetSize = duck.INIT_SIZE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.msv = (MySurfaceView) this.findViewById(R.id.theSurfaceView);
+        initDuck();
 
         redSeekBar = (SeekBar)findViewById(R.id.redSeekBar);
         greenSeekBar= (SeekBar)findViewById(R.id.greenSeekbar);
@@ -66,6 +74,8 @@ public class MainActivity extends AppCompatActivity{
             int redValue = MIN + progress;
             red = redValue;
             redVal.setText("" + redValue);
+            initDuck();
+            msv.invalidate();
         }
 
         @Override
@@ -89,6 +99,8 @@ public class MainActivity extends AppCompatActivity{
             int greenValue = MIN + progress;
             green = greenValue;
             greenVal.setText("" + greenValue);
+            initDuck();
+            msv.invalidate();
         }
 
         @Override
@@ -112,6 +124,8 @@ public class MainActivity extends AppCompatActivity{
             int blueValue = MIN + progress;
             blue = blueValue;
             blueVal.setText("" + blueValue);
+            initDuck();
+            msv.invalidate();
         }
 
         @Override
@@ -125,9 +139,25 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     *
+     *
+     */
+    protected void initDuck() {
+        duck = new Duck();
+        duck.setColor(Color.YELLOW);
+        duck.setSize(this.defTargetSize);
+        msv.setDuck(duck);
+
+        // repaint so the new spots appear
+        msv.invalidate();
+    }
+/*
     public class onTouch implements View.OnClickListener {
         public void onClick(View v) {
             int xCor =
         }
     }
+    */
+
 }

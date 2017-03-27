@@ -11,6 +11,8 @@ import android.graphics.Paint;
 
 public class Duck extends MainActivity{
 
+    public static final int INIT_SIZE = 20;
+    private int size = INIT_SIZE; // all spots begin at size 20
     protected float x; // x-coord
     protected float y; // y-coord
     private int circlXCor;
@@ -19,25 +21,36 @@ public class Duck extends MainActivity{
     protected float vy;
     protected Paint chosenPaint; // how the spot is drawn
 
-    private void createColor() {
-        int color = Color.rgb((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+    private void setColor() {
+        int color = Color.rgb((int) (MainActivity.red), (int) (MainActivity.green), (int) (MainActivity.blue));
         chosenPaint = new Paint();
         chosenPaint.setColor(color);
     }
 
-    public Duck() {
-        // place a spot in a random location
-        x = 0;
-        y = 0;
-        createColor();
-    }
-
+    /** changes the spot's color */
     public void setColor(int newColor) {
         chosenPaint.setColor(newColor);
     }
 
-    public void draw(Canvas canvas) {
+    public int getSize() {
+        return size;
+    }
 
-        canvas.drawCircle(x,y, 200, chosenPaint);
+    public void setSize(int newSize) {
+        this.size = newSize;
+    }
+
+    /**
+     * Makes a Duck object
+     */
+    public Duck() {
+        // place a spot in a random location
+        x = 900;
+        y = 300;
+        setColor();
+    }
+
+    public void draw(Canvas canvas) {
+        canvas.drawCircle(x, y, 300, chosenPaint);
     }
 }
