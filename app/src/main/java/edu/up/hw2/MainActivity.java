@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity{
     private TextView redVal;
     private TextView greenVal;
     private TextView blueVal;
-    private SurfaceView theSurfaceView;
     public static int red;
     public static int green;
     public static int blue;
@@ -32,13 +31,13 @@ public class MainActivity extends AppCompatActivity{
     private boolean rightArm;
 
     // This is the duck
-    Duck duck;
+    DuckBody duckBody;
 
     protected final int MAX = 255;
     protected final int MIN = 0;
     protected final int STEP = 1;
 
-    private int defTargetSize = duck.INIT_SIZE;
+    private int defTargetSize = duckBody.INIT_SIZE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +73,8 @@ public class MainActivity extends AppCompatActivity{
             int redValue = MIN + progress;
             red = redValue;
             redVal.setText("" + redValue);
-            initDuck();
             msv.invalidate();
+            initDuck();
         }
 
         @Override
@@ -99,8 +98,8 @@ public class MainActivity extends AppCompatActivity{
             int greenValue = MIN + progress;
             green = greenValue;
             greenVal.setText("" + greenValue);
-            initDuck();
             msv.invalidate();
+            initDuck();
         }
 
         @Override
@@ -124,8 +123,8 @@ public class MainActivity extends AppCompatActivity{
             int blueValue = MIN + progress;
             blue = blueValue;
             blueVal.setText("" + blueValue);
-            initDuck();
             msv.invalidate();
+            initDuck();
         }
 
         @Override
@@ -144,12 +143,8 @@ public class MainActivity extends AppCompatActivity{
      *
      */
     protected void initDuck() {
-        duck = new Duck();
-        duck.setColor(Color.YELLOW);
-        duck.setSize(this.defTargetSize);
-        msv.setDuck(duck);
-
-        // repaint so the new spots appear
+        duckBody = new DuckBody();
+        msv.setDuckBody(duckBody);
         msv.invalidate();
     }
 /*

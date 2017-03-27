@@ -22,12 +22,14 @@ import android.widget.SeekBar;
 
 public class MySurfaceView extends SurfaceView{
 
-    private SurfaceHolder surfaceHolder;
-    private Bitmap bmpIcon;
-    protected Paint myPaint; // how the spot is drawn
-    protected Paint chosenPaint;
-    private Duck myDuck = new Duck();
+    private DuckBody myDuckBody = new DuckBody();
+    private DuckHead myDuckHead = new DuckHead();
+    private DuckBeak myDuckBeak = new DuckBeak();
+    private DuckLegs myDuckLegs = new DuckLegs();
 
+    private void init(){
+        setWillNotDraw(false);
+    }
 
     public MySurfaceView(Context context) {
         super(context);
@@ -46,63 +48,37 @@ public class MySurfaceView extends SurfaceView{
         init();
     }
 
-    protected void setRandomPaint() {
-        int color = Color.rgb((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
-        myPaint = new Paint();
-        myPaint.setColor(color);
-    }
-
-    private void init(){
-        surfaceHolder = getHolder();
-        bmpIcon = BitmapFactory.decodeResource(getResources(),
-                R.mipmap.ic_launcher);
-        surfaceHolder.addCallback(new SurfaceHolder.Callback(){
-
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                createColor();
-                Canvas canvas = holder.lockCanvas(null);
-                draw(canvas);
-                holder.unlockCanvasAndPost(canvas);
-
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder,
-                                       int format, int width, int height) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                // TODO Auto-generated method stub
-
-            }});
-    }
-
-    public void setDuck(Duck newDuck) {
+    public void setDuckBody(DuckBody newDuck) {
         if (newDuck != null) {
-            this.myDuck = newDuck;
+            this.myDuckBody = newDuck;
         }
     }
 
-    private void createColor() {
-        int color = Color.rgb((int) (MainActivity.red), (int) (MainActivity.green), (int) (MainActivity.blue));
-        chosenPaint = new Paint();
-        chosenPaint.setColor(color);
+    public void setDuckHead(DuckHead newDuck) {
+        if (newDuck != null) {
+            this.myDuckHead = newDuck;
+        }
     }
-/*
-    protected void drawSomething(Canvas canvas) {
-        canvas.drawColor(Color.WHITE);
-        canvas.drawCircle(getWidth()/2, getHeight()/2, 300, chosenPaint);
 
+    public void setDuckBeak(DuckBeak newDuck) {
+        if (newDuck != null) {
+            this.myDuckBeak = newDuck;
+        }
     }
-*/
+
+    public void setDuckLegs(DuckLegs newDuck) {
+        if (newDuck != null) {
+            this.myDuckLegs = newDuck;
+        }
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        this.myDuck.draw(canvas);
+        myDuckBody.draw(canvas);
+        myDuckHead.draw(canvas);
+        myDuckBeak.draw(canvas);
+        myDuckLegs.draw(canvas);
     }
 
 }
