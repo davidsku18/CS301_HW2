@@ -5,7 +5,6 @@ import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -19,26 +18,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private TextView greenVal;
     private TextView blueVal;
     private TextView object;
-    public static int red;
-    public static int green;
-    public static int blue;
+
+    private int red;
+    private int green;
+    private int blue;
+
+    private int selectedObject;
 
     MySurfaceView msv;
 
-    // This is the house body
-    HouseBody houseBody;
-    // This is the house's left window
-    LeftWindow leftWindow;
-    // This is the house's right window
-    RightWindow rightWindow;
-    // This is the house's roof
-    Roof roof;
-
     protected final int MAX = 255;
-    protected final int MIN = 0;
-    protected final int STEP = 1;
-
-    private int defTargetSize = houseBody.INIT_SIZE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         setContentView(R.layout.activity_main);
 
         this.msv = (MySurfaceView) this.findViewById(R.id.theSurfaceView);
-        initDuck();
 
         object = (TextView)findViewById(R.id.object);
 
@@ -77,8 +65,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             int redValue = progress;
             red = redValue;
             redVal.setText("" + redValue);
-            msv.invalidate();
-            initDuck();
+            if (selectedObject == 1) {
+                msv.rect1.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 2){
+                msv.circle1.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 3) {
+                msv.circle2.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
         }
 
         @Override
@@ -102,8 +100,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             int greenValue = progress;
             green = greenValue;
             greenVal.setText("" + greenValue);
-            msv.invalidate();
-            initDuck();
+            if (selectedObject == 1) {
+                msv.rect1.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 2){
+                msv.circle1.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 3) {
+                msv.circle2.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+
         }
 
         @Override
@@ -127,8 +136,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             int blueValue = progress;
             blue = blueValue;
             blueVal.setText("" + blueValue);
-            msv.invalidate();
-            initDuck();
+            if (selectedObject == 1) {
+                msv.rect1.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 2) {
+                msv.circle1.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 3) {
+                msv.circle2.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+
         }
 
         @Override
@@ -142,73 +162,45 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
     }
 
-    /**
-     *
-     *
-     */
-    protected void initDuck() {
-        houseBody = new HouseBody();
-        leftWindow = new LeftWindow();
-        rightWindow = new RightWindow();
-        roof = new Roof();
-        msv.setHouseBody(houseBody);
-        msv.setLeftWindow(leftWindow);
-        msv.setRightWindow(rightWindow);
-        msv.setRoof(roof);
-        msv.invalidate();
-    }
-
-
     public boolean onTouch(View v, MotionEvent event)
     {
         int x = (int)event.getX();
         int y = (int)event.getY();
         int currentColor;
-        int newColor;
 
-        if(msv.body.containsPoint(x,y))
+        if(msv.rect1.containsPoint(x,y))
         {
-            object.setText("House Body");
-            currentColor = msv.body.getColor();
+            selectedObject = 1;
+            object.setText("Rectangle1");
+            currentColor = msv.rect1.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
             blueSeekBar.setProgress(Color.blue(currentColor));
-            msv.body.setColor(Color.rgb(red,green,blue));
-            newColor = msv.body.getColor();
-            redSeekBar.setProgress(Color.red(newColor));
-            greenSeekBar.setProgress(Color.green(newColor));
-            blueSeekBar.setProgress(Color.blue(newColor));
-            msv.body.setColor(Color.rgb(red,green,blue));
+        }
 
-            msv.invalidate();
+        else if(msv.circle1.containsPoint(x,y))
+        {
+            selectedObject = 2;
+            object.setText("Circle1");
+            currentColor = msv.circle1.getColor();
+            redSeekBar.setProgress(Color.red(currentColor));
+            greenSeekBar.setProgress(Color.green(currentColor));
+            blueSeekBar.setProgress(Color.blue(currentColor));
+        }
+
+        else if(msv.circle2.containsPoint(x,y))
+        {
+            selectedObject = 3;
+            object.setText("Left Window");
+            currentColor = msv.circle2.getColor();
+            redSeekBar.setProgress(Color.red(currentColor));
+            greenSeekBar.setProgress(Color.green(currentColor));
+            blueSeekBar.setProgress(Color.blue(currentColor));
         }
         /*
-        else if(topRight.containsPoint(x,y))
-        {
-            object.setText("Right Window");
-            currentColor = topRight.getColor();
-            redSeekBar.setProgress(Color.red(currentColor));
-            greenSeekBar.setProgress(Color.green(currentColor));
-            blueSeekBar.setProgress(Color.blue(currentColor));
-
-            topRight.setColor(Color.rgb(newRed,newGreen,newBlue));
-            msv.invalidate();
-        }
-        else if(bottomLeft.containsPoint(x,y))
-        {
-            object.setText("Left Window");
-            currentColor = bottomLeft.getColor();
-            redSeekBar.setProgress(Color.red(currentColor));
-            greenSeekBar.setProgress(Color.green(currentColor));
-            blueSeekBar.setProgress(Color.blue(currentColor));
-
-            bottomLeft.setColor(Color.rgb(newRed,newGreen,newBlue));
-            msv.invalidate();
-
-        }
         else if(bottomRight.containsPoint(x,y))
         {
-            object.setText("Roof");
+            object.setText("");
             currentColor = bottomRight.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
@@ -243,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         */
         else
         {
+            selectedObject = 0;
             object.setText("No Element Selected");
             redSeekBar.setProgress(0);
             greenSeekBar.setProgress(0);
@@ -251,6 +244,4 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
         return true;
     }
-
-
 }

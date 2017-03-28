@@ -17,17 +17,7 @@ public class HouseBody extends MainActivity{
     protected float bodyXCor; // x-coord
     protected float bodyYCor; // y-coord
 
-    int red = MainActivity.red;
-    int green = MainActivity.green;
-    int blue = MainActivity.blue;
-
     protected Paint bodyPaint; // how the spot is drawn
-
-    private void setBodyColor() {
-        int color = Color.rgb(red, green, blue);
-        bodyPaint = new Paint();
-        bodyPaint.setColor(color);
-    }
 
     /** changes the body's color */
     public void setBodyColor(int newColor) {
@@ -49,11 +39,10 @@ public class HouseBody extends MainActivity{
         // place a spot in a random location
         bodyXCor = 300;
         bodyYCor = 500;
-        setBodyColor();
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawRect(bodyXCor, bodyYCor, 1200, 1200, bodyPaint);
+       //canvas.drawRect(bodyXCor, bodyYCor, 1200, 1200, bodyPaint);
     }
 
 }

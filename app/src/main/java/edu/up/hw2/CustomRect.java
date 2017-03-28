@@ -1,7 +1,13 @@
 package edu.up.hw2;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+
+import static edu.up.hw2.R.id.blue;
+import static edu.up.hw2.R.id.green;
+import static edu.up.hw2.R.id.red;
 
 /**
  * <!-- class CustomRect -->
@@ -19,16 +25,16 @@ public class CustomRect extends CustomElement {
 
 	/** the position and size of the rectangle is stored here */
 	protected Rect myRect;
-	
+
 	/** the rectangles dimensions must be defined at construction */
-	public CustomRect(String name, int color, 
+	public CustomRect(String name, int color,
 			int left, int top, int right, int bottom)
 	{
 		super(name, color);
 		
 		this.myRect = new Rect(left, top, right, bottom);
 	}
-	
+
 	
 	@Override
 	public void drawMe(Canvas canvas) {
@@ -60,8 +66,6 @@ public class CustomRect extends CustomElement {
 		canvas.drawRect(myRect, highlightPaint);
 		canvas.drawRect(myRect, outlinePaint);  //keep outline so it stands out
 	}
-	
-	
-	
-	
+
+
 }//class CustomRect

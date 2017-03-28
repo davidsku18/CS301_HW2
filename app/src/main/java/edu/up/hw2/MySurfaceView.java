@@ -21,17 +21,13 @@ import android.widget.SeekBar;
 
 public class MySurfaceView extends SurfaceView{
 
-    CustomRect body = new CustomRect("hosueBody", Color.BLACK, 300, 500, 1500, 1700);
-    private HouseBody myHouseBody = new HouseBody();
-    private LeftWindow myLeftWindow = new LeftWindow();
-    private RightWindow myRightWindow = new RightWindow();
-    private Roof myRoof = new Roof();
+    CustomRect rect1 = new CustomRect("rect1", Color.RED, 300, 500, 1200, 1200);
+    CustomCircle circle1 = new CustomCircle("circle1", Color.BLUE, 400, 200, 100);
+    CustomCircle circle2 = new CustomCircle("circle1", Color.BLUE, 600, 200, 100);
 
     private void init(){
         setWillNotDraw(false);
     }
-
-
 
     public MySurfaceView(Context context) {
         super(context);
@@ -50,39 +46,16 @@ public class MySurfaceView extends SurfaceView{
         init();
     }
 
-    public void setHouseBody(HouseBody newHouse) {
-        if (newHouse != null) {
-            this.myHouseBody = newHouse;
-        }
-    }
-
-    public void setLeftWindow(LeftWindow newDuck) {
-        if (newDuck != null) {
-            this.myLeftWindow = newDuck;
-        }
-    }
-
-    public void setRightWindow(RightWindow newDuck) {
-        if (newDuck != null) {
-            this.myRightWindow = newDuck;
-        }
-    }
-
-    public void setRoof(Roof newDuck) {
-        if (newDuck != null) {
-            this.myRoof = newDuck;
+    public void setRect1(CustomRect rect) {
+        if (rect != null) {
+            this.rect1 = rect;
         }
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        canvas.drawColor(Color.WHITE);
-        myHouseBody.draw(canvas);
-        myRightWindow.draw(canvas);
-        myLeftWindow.draw(canvas);
-        myRoof.draw(canvas);
-
+    public void onDraw(Canvas canvas) {
+        rect1.drawMe(canvas);
+        circle1.drawMe(canvas);
+        circle2.drawMe(canvas);
     }
-
 }
