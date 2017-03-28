@@ -1,13 +1,7 @@
 package edu.up.hw2;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
-
-import static edu.up.hw2.R.id.blue;
-import static edu.up.hw2.R.id.green;
-import static edu.up.hw2.R.id.red;
 
 /**
  * <!-- class CustomRect -->

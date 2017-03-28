@@ -1,14 +1,10 @@
 package edu.up.hw2;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
-import android.widget.SeekBar;
 
 /**
  External Citation
@@ -21,6 +17,7 @@ import android.widget.SeekBar;
 
 public class MySurfaceView extends SurfaceView{
 
+    // Creates objects for the surface view to print
     CustomRect rect1 = new CustomRect("rect1", Color.RED, 300, 500, 700, 1200);
     CustomRect rect2 = new CustomRect("rect2", Color.CYAN, 800, 500, 1200, 1200);
     CustomCircle circle1 = new CustomCircle("circle1", Color.BLUE, 400, 200, 100);
@@ -37,24 +34,22 @@ public class MySurfaceView extends SurfaceView{
         init();
     }
 
-    public MySurfaceView(Context context,
-                         AttributeSet attrs) {
+    public MySurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public MySurfaceView(Context context,
-                         AttributeSet attrs, int defStyle) {
+    public MySurfaceView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public void setRect1(CustomRect rect) {
-        if (rect != null) {
-            this.rect1 = rect;
-        }
-    }
-
+    /**
+     * Draws the objects on the surface view
+     *
+     * @param canvas
+     *          the canvas
+     */
     @Override
     public void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
