@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.SeekBar;
 
@@ -22,14 +21,17 @@ import android.widget.SeekBar;
 
 public class MySurfaceView extends SurfaceView{
 
-    private DuckBody myDuckBody = new DuckBody();
-    private DuckHead myDuckHead = new DuckHead();
-    private DuckBeak myDuckBeak = new DuckBeak();
-    private DuckLegs myDuckLegs = new DuckLegs();
+    CustomRect body = new CustomRect("hosueBody", Color.BLACK, 300, 500, 1500, 1700);
+    private HouseBody myHouseBody = new HouseBody();
+    private LeftWindow myLeftWindow = new LeftWindow();
+    private RightWindow myRightWindow = new RightWindow();
+    private Roof myRoof = new Roof();
 
     private void init(){
         setWillNotDraw(false);
     }
+
+
 
     public MySurfaceView(Context context) {
         super(context);
@@ -48,37 +50,39 @@ public class MySurfaceView extends SurfaceView{
         init();
     }
 
-    public void setDuckBody(DuckBody newDuck) {
-        if (newDuck != null) {
-            this.myDuckBody = newDuck;
+    public void setHouseBody(HouseBody newHouse) {
+        if (newHouse != null) {
+            this.myHouseBody = newHouse;
         }
     }
 
-    public void setDuckHead(DuckHead newDuck) {
+    public void setLeftWindow(LeftWindow newDuck) {
         if (newDuck != null) {
-            this.myDuckHead = newDuck;
+            this.myLeftWindow = newDuck;
         }
     }
 
-    public void setDuckBeak(DuckBeak newDuck) {
+    public void setRightWindow(RightWindow newDuck) {
         if (newDuck != null) {
-            this.myDuckBeak = newDuck;
+            this.myRightWindow = newDuck;
         }
     }
 
-    public void setDuckLegs(DuckLegs newDuck) {
+    public void setRoof(Roof newDuck) {
         if (newDuck != null) {
-            this.myDuckLegs = newDuck;
+            this.myRoof = newDuck;
         }
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        myDuckBody.draw(canvas);
-        myDuckHead.draw(canvas);
-        myDuckBeak.draw(canvas);
-        myDuckLegs.draw(canvas);
+        canvas.drawColor(Color.WHITE);
+        myHouseBody.draw(canvas);
+        myRightWindow.draw(canvas);
+        myLeftWindow.draw(canvas);
+        myRoof.draw(canvas);
+
     }
 
 }
