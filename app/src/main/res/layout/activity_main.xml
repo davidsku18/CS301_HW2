@@ -131,19 +131,26 @@
                         android:elevation="0dp"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/currentlySelected"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Object Currently Selected:" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/object"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:paddingRight="120dp" />
+                            <TextView
+                                android:id="@+id/currentlySelected"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Object Currently Selected:" />
+
+                            <TextView
+                                android:id="@+id/object"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingRight="120dp" />
+                        </LinearLayout>
 
                     </LinearLayout>
 

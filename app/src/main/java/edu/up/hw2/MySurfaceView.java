@@ -21,9 +21,12 @@ import android.widget.SeekBar;
 
 public class MySurfaceView extends SurfaceView{
 
-    CustomRect rect1 = new CustomRect("rect1", Color.RED, 300, 500, 1200, 1200);
+    CustomRect rect1 = new CustomRect("rect1", Color.RED, 300, 500, 700, 1200);
+    CustomRect rect2 = new CustomRect("rect2", Color.CYAN, 800, 500, 1200, 1200);
     CustomCircle circle1 = new CustomCircle("circle1", Color.BLUE, 400, 200, 100);
-    CustomCircle circle2 = new CustomCircle("circle1", Color.BLUE, 600, 200, 100);
+    CustomCircle circle2 = new CustomCircle("circle1", Color.YELLOW, 600, 200, 100);
+    CustomCircle circle3 = new CustomCircle("circle1", Color.BLACK, 800, 200, 100);
+    CustomCircle circle4 = new CustomCircle("circle1", Color.GREEN, 1000, 200, 100);
 
     private void init(){
         setWillNotDraw(false);
@@ -54,8 +57,12 @@ public class MySurfaceView extends SurfaceView{
 
     @Override
     public void onDraw(Canvas canvas) {
+        canvas.drawColor(Color.WHITE);
         rect1.drawMe(canvas);
+        rect2.drawMe(canvas);
         circle1.drawMe(canvas);
         circle2.drawMe(canvas);
+        circle3.drawMe(canvas);
+        circle4.drawMe(canvas);
     }
 }

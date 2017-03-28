@@ -77,6 +77,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 msv.circle2.setColor(Color.rgb(red, green, blue));
                 msv.invalidate();
             }
+            else if (selectedObject == 4) {
+                msv.circle3.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 5) {
+                msv.circle4.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 6) {
+                msv.rect2.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
         }
 
         @Override
@@ -110,6 +122,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             }
             else if (selectedObject == 3) {
                 msv.circle2.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 4) {
+                msv.circle3.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 5) {
+                msv.circle4.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 6) {
+                msv.rect2.setColor(Color.rgb(red, green, blue));
                 msv.invalidate();
             }
 
@@ -148,6 +172,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 msv.circle2.setColor(Color.rgb(red, green, blue));
                 msv.invalidate();
             }
+            else if (selectedObject == 4) {
+                msv.circle3.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 5) {
+                msv.circle4.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
+            else if (selectedObject == 6) {
+                msv.rect2.setColor(Color.rgb(red, green, blue));
+                msv.invalidate();
+            }
 
         }
 
@@ -171,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if(msv.rect1.containsPoint(x,y))
         {
             selectedObject = 1;
-            object.setText("Rectangle1");
+            object.setText("Rectangle 1");
             currentColor = msv.rect1.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
@@ -181,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         else if(msv.circle1.containsPoint(x,y))
         {
             selectedObject = 2;
-            object.setText("Circle1");
+            object.setText("Circle 1");
             currentColor = msv.circle1.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
@@ -191,48 +227,40 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         else if(msv.circle2.containsPoint(x,y))
         {
             selectedObject = 3;
-            object.setText("Left Window");
+            object.setText("Circle 2");
             currentColor = msv.circle2.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
             blueSeekBar.setProgress(Color.blue(currentColor));
         }
-        /*
-        else if(bottomRight.containsPoint(x,y))
+
+        else if(msv.circle3.containsPoint(x,y))
         {
-            object.setText("");
-            currentColor = bottomRight.getColor();
+            selectedObject = 4;
+            object.setText("Circle 3");
+            currentColor = msv.circle3.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
             blueSeekBar.setProgress(Color.blue(currentColor));
-
-            bottomRight.setColor(Color.rgb(newRed,newGreen,newBlue));
-            msv.invalidate();
-
         }
-        else if(midLeft.containsPoint(x,y))
+        else if(msv.circle4.containsPoint(x,y))
         {
-            object.setText("Middle Left Circle");
-            currentColor = midLeft.getColor();
+            selectedObject = 5;
+            object.setText("Circle 4");
+            currentColor = msv.circle4.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
             blueSeekBar.setProgress(Color.blue(currentColor));
-
-            midLeft.setColor(Color.rgb(newRed,newGreen,newBlue));
-            msv.invalidate();
         }
-        else if(midRight.containsPoint(x,y))
+        else if(msv.rect2.containsPoint(x,y))
         {
-            object.setText("Middle Right Circle");
-            currentColor = midRight.getColor();
+            selectedObject = 6;
+            object.setText("Rectangle 2");
+            currentColor = msv.rect2.getColor();
             redSeekBar.setProgress(Color.red(currentColor));
             greenSeekBar.setProgress(Color.green(currentColor));
             blueSeekBar.setProgress(Color.blue(currentColor));
-
-            midRight.setColor(Color.rgb(newRed,newGreen,newBlue));
-            msv.invalidate();
         }
-        */
         else
         {
             selectedObject = 0;
